@@ -8,7 +8,7 @@ from io import BytesIO
 import google.generativeai as genai
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='build')
 
 # Load the data
 BASE_DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
@@ -61,7 +61,7 @@ def serve(path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
-    
+
 @app.route('/get_card', methods=['GET'])
 def get_card():
     global data
